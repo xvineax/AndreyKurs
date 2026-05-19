@@ -1,3 +1,9 @@
+
+
+/*
+   Подключение локальных шрифтов
+*/
+
 @font-face {
   font-family: 'Inter';
   src: url('../fonts/Inter_1.ttf') format('truetype');
@@ -14,6 +20,10 @@
   font-display: swap;
 }
 
+/*
+   Глобальные переменные проекта
+*/
+
 :root {
   --bg: #01030e;
   --surface: #070a15;
@@ -23,9 +33,13 @@
   --line: rgba(255, 255, 255, 0.06);
   --green: #69c242;
   --green-dark: #58b336;
-  --font-text: 'Inter', Arial, Helvetica, sans-serif;
-  --font-heading: 'Bebas Neue', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  --font-text: 'Inter';
+  --font-heading: 'Bebas Neue';
 }
+
+/*
+   Базовый сброс и общие настройки
+*/
 
 * {
   box-sizing: border-box;
@@ -45,11 +59,11 @@ p {
 
 body {
   min-width: 320px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--text);
   background:
     radial-gradient(circle at 64% 36%, rgba(60, 78, 180, 0.04), transparent 18%),
     linear-gradient(180deg, #00020b 0%, #01030e 100%);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 a {
@@ -62,6 +76,9 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+/*
+   Общие настройки типографики
+*/
 
 h1,
 h2,
@@ -70,20 +87,23 @@ h3,
 .footer-logo,
 .btn,
 .header-login,
-.stat-item__value {
+.stat-value {
   font-family: var(--font-heading);
 }
 
 p,
 a,
 .nav,
-.footer__text,
-.footer__title,
+.footer-text,
 .footer-nav,
 .footer-contacts,
 .footer-genres {
   font-family: var(--font-text);
 }
+
+/*
+   Общие компоненты
+*/
 
 .container {
   width: 100%;
@@ -96,34 +116,38 @@ a,
   align-items: center;
   justify-content: center;
   min-width: 216px;
-  height: 52px;
+  height: 46px;
   padding: 0 28px;
-  border-radius: 6px;
   border: 1px solid transparent;
+  border-radius: 6px;
   font-size: 17px;
   line-height: 1;
   letter-spacing: 0.01em;
   transition: .2s ease;
 }
 
-.btn--primary {
+.btn-primary {
   background: var(--green);
   color: #071006;
 }
 
-.btn--primary:hover {
+.btn-primary:hover {
   background: var(--green-dark);
 }
 
-.btn--ghost {
+.btn-ghost {
   border-color: var(--green);
-  color: var(--green);
   background: transparent;
+  color: var(--green);
 }
 
-.btn--ghost:hover {
+.btn-ghost:hover {
   background: rgba(105, 194, 66, 0.08);
 }
+
+/*
+   Header сайта
+*/
 
 .site-header {
   height: 83px;
@@ -131,11 +155,11 @@ a,
 }
 
 .header-inner {
-  height: 100%;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   column-gap: 50px;
+  height: 100%;
 }
 
 .logo {
@@ -143,16 +167,16 @@ a,
   align-items: baseline;
   gap: 8px;
   font-family: var(--font-heading);
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1;
   letter-spacing: 0.02em;
 }
 
-.logo__soundframe {
+.logo-soundframe {
   color: #f5f5f7;
 }
 
-.logo__design {
+.logo-design {
   color: var(--green);
 }
 
@@ -160,8 +184,8 @@ a,
   display: flex;
   justify-content: center;
   gap: 35px;
-  font-size: 15px;
   color: #b8b9c0;
+  font-size: 14px;
 }
 
 .nav a:hover,
@@ -170,18 +194,22 @@ a,
 }
 
 .header-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 100px;
   height: 38px;
   border: 2px solid var(--green);
   border-radius: 6px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   color: var(--green);
   font-family: var(--font-heading);
   font-size: 18px;
   letter-spacing: 0.02em;
 }
+
+/*
+   Footer сайта
+*/
 
 .site-footer {
   padding: 64px 0 28px;
@@ -189,18 +217,17 @@ a,
   background: #02040f;
 }
 
-.footer__inner {
+.footer-inner {
   display: grid;
   grid-template-columns: 1.25fr 0.75fr 1fr 1fr;
   gap: 54px;
 }
 
-.footer__about {
+.footer-about {
   max-width: 285px;
 }
 
 .footer-logo {
-  display: inline-flex;
   align-items: baseline;
   font-family: var(--font-heading);
   font-size: 25px;
@@ -208,25 +235,26 @@ a,
   letter-spacing: 0.01em;
 }
 
-.footer-logo__soundframe {
+.footer-logo-soundframe {
   color: #f5f5f7;
 }
 
-.footer-logo__design {
+.footer-logo-design {
   color: var(--green);
 }
 
-.footer__text {
+.footer-text {
   margin-top: 24px;
+  color: #a9abb5;
   font-size: 16px;
   line-height: 1.65;
-  color: #a9abb5;
 }
 
-.footer__title {
+.footer-title {
   margin: 0 0 24px;
-  color: #ffffff;
+  color: var(--green);
   font-size: 18px;
+  font-family: var(--font-heading);
   line-height: 1;
   font-weight: 700;
 }
@@ -243,9 +271,9 @@ a,
 .footer-contacts a,
 .footer-genres li,
 .footer-contacts p {
-  font-size: 15px;
-  line-height: 1.45;
   color: #a9abb5;
+  font-size: 14px;
+  line-height: 1.45;
 }
 
 .footer-nav a:hover,
@@ -263,67 +291,498 @@ a,
   list-style: none;
 }
 
-.footer__bottom {
+.footer-bottom {
   margin-top: 56px;
   padding-top: 26px;
   border-top: 1px solid var(--line);
 }
 
-.footer__bottom p {
+.footer-bottom p {
+  color: #7f818c;
   font-size: 14px;
   line-height: 1.5;
-  color: #7f818c;
 }
 
-@media (max-width: 980px) {
-  .container {
-    padding: 0 24px;
-  }
+/*
+   Модальное окно авторизации
+*/
 
-  .header-inner {
-    grid-template-columns: 1fr auto;
-    gap: 24px;
-  }
+.auth-dialog {
+  width: min(100% - 32px, 480px);
+  max-height: calc(100vh - 16px);
+  margin: auto;
+  padding: 0;
+  border: none;
+  border-radius: 28px;
+  background: transparent;
+  color: var(--text);
+}
 
-  .nav {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 18px;
-  }
+.auth-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.82);
+}
 
-  .site-header {
-    height: auto;
-    padding: 22px 0;
-  }
+.auth-modal {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  background: linear-gradient(180deg, #222437 0%, #24263a 100%);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
 
-  .footer__inner {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 42px 34px;
-  }
+.auth-modal-media {
+  display: grid;
+  grid-template-columns: 1fr 56px 1fr;
+  grid-template-areas:
+    ". icon close"
+    "logo logo logo";
+  align-items: start;
+  row-gap: 14px;
+  padding: 14px 20px;
+  background:
+    linear-gradient(rgba(5, 6, 12, 0.5), rgba(5, 6, 12, 0.5)),
+    url('../icons/background_modal.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.auth-modal-icon {
+  grid-area: icon;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto;
+  border: 2px solid var(--green);
+  border-radius: 16px;
+  color: var(--green);
+  font-size: 28px;
+  line-height: 1;
+}
+
+.auth-modal-close {
+  grid-area: close;
+  justify-self: end;
+  align-self: start;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.auth-modal-logo {
+  grid-area: logo;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.auth-modal-logo-light {
+  color: #ffffff;
+}
+
+.auth-modal-logo-green {
+  color: var(--green);
+}
+
+.auth-modal-body {
+  padding: 16px 22px 20px;
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding: 7px;
+  border-radius: 18px;
+  background: #17192b;
+}
+
+.auth-tab-button {
+  height: 44px;
+  border: none;
+  border-radius: 14px;
+  background: transparent;
+  color: #c4c5cf;
+  font-family: var(--font-text);
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.auth-tab-button.is-active {
+  background: rgba(105, 194, 66, 0.16);
+  color: var(--green);
+}
+
+.auth-panel[hidden] {
+  display: none;
+}
+
+.auth-panel-title {
+  margin-top: 16px;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+.auth-panel-subtitle {
+  margin-top: 8px;
+  color: #babcc7;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin-top: 16px;
+}
+
+.auth-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.auth-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.auth-form-field span {
+  color: #b5b7c3;
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.auth-form-field input {
+  width: 100%;
+  height: 46px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 14px;
+  outline: none;
+  background: #0a0b14;
+  color: #ffffff;
+  font-family: var(--font-text);
+  font-size: 14px;
+}
+
+.auth-form-field input::placeholder {
+  color: #5f6273;
+}
+
+.auth-form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #afb2bf;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.auth-form-check input {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+}
+
+.auth-form-check a,
+.auth-panel-switch a {
+  color: var(--green);
+}
+
+.auth-form-submit {
+  width: 100%;
+  height: 46px;
+  margin-top: 2px;
+  border: none;
+  border-radius: 14px;
+  background: var(--green);
+  color: #071006;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.auth-social {
+  margin-top: 18px;
+}
+
+.auth-social-title {
+  color: #737785;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+}
+
+.auth-social-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.auth-social-list button {
+  min-height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  background: #0a0b14;
+  color: #f0f0f3;
+  font-family: var(--font-text);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.auth-panel-switch {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+  color: #b0b3bf;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+/*
+   Модальное окно контактов
+   Используется при клике по пункту "Контакты" в header.
+   Окно построено без абсолютного размещения, чтобы сохранить ограничение проекта.
+*/
+
+.contacts-dialog {
+  width: min(100% - 32px, 520px);
+  margin: auto;
+  padding: 0;
+  border: none;
+  border-radius: 26px;
+  background: transparent;
+  color: var(--text);
+}
+
+.contacts-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.82);
+}
+
+.contacts-modal {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+  border: 1px solid rgba(105, 194, 66, 0.22);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(105, 194, 66, 0.16), transparent 34%),
+    linear-gradient(180deg, #222437 0%, #171928 100%);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.contacts-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.contacts-modal-label {
+  margin-bottom: 10px;
+  color: var(--green);
+  font-family: var(--font-text);
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contacts-modal-title {
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 52px;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+}
+
+.contacts-modal-close {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.contacts-modal-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.contacts-modal-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  background: rgba(10, 11, 20, 0.72);
+}
+
+.contacts-modal-section h3 {
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.contacts-modal-section a {
+  color: #b8bac7;
+  font-family: var(--font-text);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.contacts-modal-section a:hover {
+  color: var(--green);
+}
+
+.contacts-modal-text {
+  color: #a9abb8;
+  font-family: var(--font-text);
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 @media (max-width: 560px) {
-  .btn {
-    width: 100%;
-    min-width: 0;
+  .contacts-dialog {
+    width: calc(100% - 20px);
   }
 
-  .site-footer {
-    padding-top: 46px;
+  .contacts-modal {
+    gap: 20px;
+    padding: 24px 20px;
+    border-radius: 22px;
   }
 
-  .footer__inner {
-    grid-template-columns: 1fr;
-    gap: 34px;
+  .contacts-modal-title {
+    font-size: 42px;
   }
+}
 
-  .footer__about {
-    max-width: none;
-  }
 
-  .footer__bottom {
-    margin-top: 40px;
-  }
+/*
+   Модальное окно заявки на проект
+   Открывается на странице for-whom.html по кнопке "Начать проект".
+*/
+
+.project-dialog {
+  width: min(100% - 32px, 540px);
+  margin: auto;
+  padding: 0;
+  border: none;
+  border-radius: 26px;
+  background: transparent;
+  color: var(--text);
+}
+
+.project-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.82);
+}
+
+.project-modal {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+  border: 1px solid rgba(105, 194, 66, 0.22);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(105, 194, 66, 0.16), transparent 34%),
+    linear-gradient(180deg, #222437 0%, #171928 100%);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.project-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.project-modal-label {
+  margin-bottom: 10px;
+  color: var(--green);
+  font-family: var(--font-text);
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.project-modal-title {
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 52px;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+}
+
+.project-modal-close {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.project-modal-text {
+  color: #a9abb8;
+  font-family: var(--font-text);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.project-modal-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.project-modal-actions .btn {
+  width: 100%;
+}
+
+.project-modal-actions .btn-primary {
+  font-family: var(--font-heading)
 }

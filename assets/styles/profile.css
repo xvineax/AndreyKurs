@@ -1,0 +1,410 @@
+/*
+   Страница профиля Soundframe Design
+
+   Файл содержит стили только для profile.html.
+   Общие элементы сайта: header, footer, кнопки, контейнеры,
+   модальные окна и переменные берутся из main.css.
+*/
+
+/*
+   Общая область страницы
+*/
+
+.profile-page {
+  min-height: calc(100vh - 83px);
+  padding: 72px 0 92px;
+  background:
+    radial-gradient(circle at 78% 18%, rgba(105, 194, 66, 0.14), transparent 30%),
+    radial-gradient(circle at 16% 82%, rgba(124, 84, 210, 0.14), transparent 32%),
+    linear-gradient(180deg, #01030e 0%, #080a17 100%);
+}
+
+.profile-page-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+/*
+   Верхний блок профиля
+*/
+
+.profile-hero {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 28px;
+  padding: 34px;
+  border: 1px solid rgba(105, 194, 66, 0.2);
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(105, 194, 66, 0.12), transparent 36%),
+    linear-gradient(180deg, rgba(23, 26, 45, 0.96), rgba(9, 11, 24, 0.96));
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.profile-hero-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 116px;
+  height: 116px;
+  border: 2px solid var(--green);
+  border-radius: 28px;
+  background: rgba(105, 194, 66, 0.1);
+  color: var(--green);
+  font-family: var(--font-heading);
+  font-size: 48px;
+  line-height: 1;
+}
+
+.profile-hero-info {
+  max-width: 650px;
+}
+
+.profile-hero-label {
+  margin-bottom: 12px;
+  color: var(--green);
+  font-family: var(--font-text);
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.profile-hero-title {
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 64px;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+}
+
+.profile-hero-text {
+  margin-top: 18px;
+  color: #a9abb8;
+  font-family: var(--font-text);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.profile-hero-button {
+  min-width: 180px;
+}
+
+/*
+   Сетка карточек профиля
+   Слева находится основная информация, справа — быстрые действия.
+*/
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: start;
+  gap: 24px;
+}
+
+.profile-card {
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 24px;
+  background: rgba(10, 12, 25, 0.86);
+}
+
+.profile-card-title {
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+/*
+   Информация пользователя
+*/
+
+.profile-info {
+  display: grid;
+  gap: 14px;
+  margin: 24px 0 0;
+}
+
+.profile-info-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 18px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.profile-info-row:last-child {
+  border-bottom: none;
+}
+
+.profile-info dt {
+  color: #777b8c;
+  font-family: var(--font-text);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.profile-info dd {
+  margin: 0;
+  color: #f2f3f6;
+  font-family: var(--font-text);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.profile-status {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(105, 194, 66, 0.14);
+  color: var(--green);
+}
+
+/*
+   Быстрые действия
+*/
+
+.profile-actions {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.profile-actions a {
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: #0a0b14;
+  color: #cfd1db;
+  font-family: var(--font-text);
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.profile-actions a:hover {
+  color: var(--green);
+}
+
+/*
+   Адаптив страницы профиля
+*/
+
+@media (max-width: 980px) {
+  .profile-page {
+    padding: 54px 0 72px;
+  }
+
+  .profile-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-hero-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .profile-page {
+    padding: 42px 0 56px;
+  }
+
+  .profile-hero,
+  .profile-card {
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .profile-hero-avatar {
+    width: 94px;
+    height: 94px;
+    border-radius: 22px;
+    font-size: 40px;
+  }
+
+  .profile-hero-title {
+    font-size: 46px;
+  }
+
+  .profile-card-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .profile-card-title {
+    font-size: 32px;
+  }
+
+  .profile-info-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .profile-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-project {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+
+/*
+   Модальное окно редактирования профиля
+*/
+
+.profile-edit-dialog {
+  width: min(100% - 32px, 560px);
+  margin: auto;
+  padding: 0;
+  border: none;
+  border-radius: 26px;
+  background: transparent;
+  color: var(--text);
+}
+
+.profile-edit-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.82);
+}
+
+.profile-edit-modal {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+  border: 1px solid rgba(105, 194, 66, 0.22);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(105, 194, 66, 0.16), transparent 34%),
+    linear-gradient(180deg, #222437 0%, #171928 100%);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.profile-edit-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.profile-edit-modal-label {
+  margin-bottom: 10px;
+  color: var(--green);
+  font-family: var(--font-text);
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.profile-edit-modal-title {
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 52px;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+}
+
+.profile-edit-modal-close {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.profile-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-edit-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.profile-edit-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.profile-edit-form-field span {
+  color: #b5b7c3;
+  font-family: var(--font-text);
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.profile-edit-form-field input {
+  width: 100%;
+  height: 50px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  outline: none;
+  background: #0a0b14;
+  color: #ffffff;
+  font-family: var(--font-text);
+  font-size: 14px;
+}
+
+.profile-edit-form-field input::placeholder {
+  color: #636778;
+}
+
+.profile-edit-form-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.profile-actions-logout {
+  color: #ff8c8c;
+}
+
+.profile-actions-logout:hover {
+  color: #ffb0b0;
+}
+
+
+@media (max-width: 560px) {
+  .profile-edit-dialog {
+    width: calc(100% - 20px);
+  }
+
+  .profile-edit-modal {
+    gap: 20px;
+    padding: 24px 20px;
+    border-radius: 22px;
+  }
+
+  .profile-edit-modal-title {
+    font-size: 42px;
+  }
+
+  .profile-edit-form-row,
+  .profile-edit-form-buttons {
+    grid-template-columns: 1fr;
+  }
+}

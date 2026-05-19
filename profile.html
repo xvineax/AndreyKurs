@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Процесс — Soundframe Design</title>
+  <title>Профиль — Soundframe Design</title>
   <link rel="stylesheet" href="assets/styles/main.css" />
-  <link rel="stylesheet" href="assets/styles/process.css" />
+  <link rel="stylesheet" href="assets/styles/profile.css" />
 </head>
 <body>
   <header class="site-header">
@@ -17,7 +17,7 @@
 
       <nav class="nav" aria-label="Основная навигация">
         <a href="portfolio.html">Портфолио</a>
-        <a class="is-active" href="process.html">Процесс</a>
+        <a href="process.html">Процесс</a>
         <a href="for-whom.html">Для кого</a>
         <a href="#">Комьюнити</a>
         <a class="open-contacts" href="#">Контакты</a>
@@ -27,73 +27,63 @@
     </div>
   </header>
 
-  <main class="process-page">
-    <section class="process-section">
-      <div class="container process-inner">
-        <h1 class="process-title">Как это работает</h1>
-        <p class="process-subtitle">
-          Прозрачный и защищенный процесс от заявки до релиза. Каждый этап<br>
-          сопровождается юридическим договором и защитой прав.
-        </p>
-
-        <div class="process-grid">
-          <article class="process-card">
-            <div class="process-card-top">
-              <span class="process-card-icon" aria-hidden="true">
-                <img src="assets/icons/telegram.png" alt="">
-              </span>
-              <span class="process-card-number">01</span>
-            </div>
-            <h2 class="process-card-title">Подача заявки</h2>
-            <p class="process-card-text">
-              Заполните форму с описанием проекта, жанром и референсами. Наш куратор
-              свяжется с вами в течение 24 часов.
-            </p>
-          </article>
-
-          <article class="process-card">
-            <div class="process-card-top">
-              <span class="process-card-icon" aria-hidden="true">
-                <img src="assets/icons/contract.png" alt="">
-              </span>
-              <span class="process-card-number">02</span>
-            </div>
-            <h2 class="process-card-title">Юридический<br>договор</h2>
-            <p class="process-card-text">
-              Подписываем договор, который защищает права на музыку и дизайн. Оплата
-              делится на этапы.
-            </p>
-          </article>
-
-          <article class="process-card">
-            <div class="process-card-top">
-              <span class="process-card-icon" aria-hidden="true">
-                <img src="assets/icons/multiple-users-silhouette.png" alt="">
-              </span>
-              <span class="process-card-number">03</span>
-            </div>
-            <h2 class="process-card-title">Подбор дизайнера</h2>
-            <p class="process-card-text">
-              Мы подбираем дизайнера из нашего комьюнити, чей стиль максимально соответствует
-              вашему проекту.
-            </p>
-          </article>
-
-          <article class="process-card">
-            <div class="process-card-top">
-              <span class="process-card-icon" aria-hidden="true">
-                <img src="assets/icons/rocket.png" alt="">
-              </span>
-              <span class="process-card-number">04</span>
-            </div>
-            <h2 class="process-card-title">Релиз и<br>продвижение</h2>
-            <p class="process-card-text">
-              Готовый проект попадает в наше портфолио и получает продвижение в соцсетях
-              платформы.
-            </p>
-          </article>
+  <main class="profile-page">
+    <section class="container profile-page-inner">
+      <header class="profile-hero">
+        <div class="profile-hero-avatar">
+          <span>SD</span>
         </div>
-      </div>
+
+        <div class="profile-hero-info">
+          <p class="profile-hero-label">Личный кабинет</p>
+          <h1 class="profile-hero-title">Профиль пользователя</h1>
+          <p class="profile-hero-text">
+            Управляйте данными аккаунта, отслеживайте проекты и сохраняйте
+            избранные визуальные работы Soundframe Design.
+          </p>
+        </div>
+
+        <a class="btn btn-primary profile-hero-button open-profile-edit" href="#">РЕДАКТИРОВАТЬ</a>
+      </header>
+
+      <section class="profile-grid">
+        <article class="profile-card profile-card-info">
+          <h2 class="profile-card-title">Основная информация</h2>
+
+          <dl class="profile-info">
+            <div class="profile-info-row">
+              <dt>Имя</dt>
+              <dd>Иван</dd>
+            </div>
+
+            <div class="profile-info-row">
+              <dt>Фамилия</dt>
+              <dd>Иванов</dd>
+            </div>
+
+            <div class="profile-info-row">
+              <dt>Email</dt>
+              <dd>sound@design.com</dd>
+            </div>
+
+            <div class="profile-info-row">
+              <dt>Статус</dt>
+              <dd><span class="profile-status">Активен</span></dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="profile-card">
+          <h2 class="profile-card-title">Быстрые действия</h2>
+
+          <div class="profile-actions">
+            <a class="open-profile-edit" href="#">Редактировать профиль</a>
+            <a href="#">Изменить пароль</a>
+            <a class="open-contacts" href="#">Связаться с нами</a>
+            <a class="profile-actions-logout" href="index.html">Выйти из аккаунта</a>
+          </div>
+        </article>
+      </section>
     </section>
   </main>
 
@@ -265,6 +255,53 @@
         Напишите нам, если хотите запустить визуальное оформление релиза,
         обсудить сотрудничество или присоединиться к комьюнити дизайнеров.
       </p>
+    </div>
+  </dialog>
+
+  <dialog class="profile-edit-dialog" id="profile-edit-modal">
+    <div class="profile-edit-modal">
+      <div class="profile-edit-modal-header">
+        <div>
+          <p class="profile-edit-modal-label">Личный кабинет</p>
+          <h2 class="profile-edit-modal-title">Редактирование</h2>
+        </div>
+
+        <button class="profile-edit-modal-close close-profile-edit" type="button" aria-label="Закрыть">×</button>
+      </div>
+
+      <form class="profile-edit-form">
+        <div class="profile-edit-form-row">
+          <label class="profile-edit-form-field">
+            <span>ИМЯ</span>
+            <input type="text" name="first_name" value="Иван" />
+          </label>
+
+          <label class="profile-edit-form-field">
+            <span>ФАМИЛИЯ</span>
+            <input type="text" name="last_name" value="Иванов" />
+          </label>
+        </div>
+
+        <label class="profile-edit-form-field">
+          <span>EMAIL</span>
+          <input type="email" name="email" value="sound@design.com" />
+        </label>
+
+        <label class="profile-edit-form-field">
+          <span>НОВЫЙ ПАРОЛЬ</span>
+          <input type="password" name="password" placeholder="Оставьте пустым, если не меняете" />
+        </label>
+
+        <label class="profile-edit-form-field">
+          <span>ПОВТОР НОВОГО ПАРОЛЯ</span>
+          <input type="password" name="password_repeat" placeholder="Повторите новый пароль" />
+        </label>
+
+        <div class="profile-edit-form-buttons">
+          <button class="btn btn-primary" type="submit">СОХРАНИТЬ</button>
+          <button class="btn btn-ghost close-profile-edit" type="button">ОТМЕНА</button>
+        </div>
+      </form>
     </div>
   </dialog>
 

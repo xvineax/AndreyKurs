@@ -1,0 +1,77 @@
+/*
+   Переменные страницы ошибки
+*/
+
+:root {
+  --error-card: rgba(9, 12, 25, 0.78);
+}
+
+/*
+   Основной блок 404
+*/
+
+.error-page {
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - 83px);
+  padding: 76px 0;
+  background:
+    radial-gradient(circle at 50% 24%, rgba(105, 194, 66, 0.16), transparent 28%),
+    radial-gradient(circle at 50% 78%, rgba(124, 84, 210, 0.16), transparent 30%),
+    linear-gradient(180deg, #01030e 0%, #080a17 100%);
+}
+
+.error-page-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-page-content {
+  max-width: 680px;
+  text-align: center;
+}
+
+.error-page-label {
+  margin-bottom: 18px;
+  color: var(--green);
+  font-family: var(--font-text);
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.error-page-code {
+  color: var(--green);
+  font-family: var(--font-heading);
+  font-size: 170px;
+  line-height: 0.82;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 42px rgba(105, 194, 66, 0.24);
+}
+
+.error-page-title {
+  margin-top: 28px;
+  color: #f4f5f8;
+  font-family: var(--font-heading);
+  font-size: 58px;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+}
+
+.error-page-text {
+  max-width: 540px;
+  margin: 24px auto 0;
+  color: #a9abb8;
+  font-family: var(--font-text);
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.error-page-actions {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 42px;
+}

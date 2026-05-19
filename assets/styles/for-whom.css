@@ -1,13 +1,19 @@
-.cta__title {
+/*
+   Шрифты CTA-страницы
+*/
+
+.cta-title {
   font-family: var(--font-heading);
 }
 
-.cta__text,
-.cta__button {
-  font-family: var(--font-text);
+.cta-text,
+.cta-button {
+  font-family: var(--font-heading);
 }
 
-
+/*
+   Основной CTA-блок
+*/
 
 .cta-page {
   min-height: calc(100vh - 83px);
@@ -17,14 +23,14 @@
   padding: 178px 0 214px;
 }
 
-.cta__inner {
+.cta-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-.cta__title {
+.cta-title {
   max-width: 930px;
   color: #ffffff;
   font-size: 48px;
@@ -33,7 +39,7 @@
   letter-spacing: -0.025em;
 }
 
-.cta__text {
+.cta-text {
   max-width: 720px;
   margin-top: 30px;
   color: #c0c1ca;
@@ -41,25 +47,11 @@
   line-height: 1.58;
 }
 
-.cta__button {
-  margin-top: 42px;
+.cta-button {
   min-width: 166px;
   height: 50px;
+  margin-top: 42px;
   padding: 0 27px;
   font-size: 15px;
   text-transform: none;
-}
-
-@media (max-width: 760px) {
-  .cta-section {
-    padding: 100px 0 130px;
-  }
-
-  .cta__title {
-    font-size: 38px;
-  }
-
-  .cta__text {
-    font-size: 16px;
-  }
 }

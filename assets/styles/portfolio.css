@@ -1,31 +1,37 @@
-.portfolio-hero__title,
-.case-card__project {
+/*
+   Шрифты страницы портфолио
+*/
+
+.portfolio-hero-title,
+.case-card-project {
   font-family: var(--font-heading);
 }
 
-.portfolio-hero__eyebrow,
+.portfolio-hero-eyebrow,
 .portfolio-filter,
-.case-card__genre,
-.case-card__title,
-.case-card__text,
-.case-card__link {
+.case-card-genre,
+.case-card-title,
+.case-card-text,
+.case-card-link {
   font-family: var(--font-text);
 }
 
-
+/*
+   Верхний блок страницы
+*/
 
 .portfolio-page {
   padding: 122px 0 126px;
 }
 
-.portfolio-hero__inner {
+.portfolio-hero-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-.portfolio-hero__title {
+.portfolio-hero-title {
   color: #f4f4f7;
   font-size: 49px;
   line-height: 1;
@@ -33,7 +39,7 @@
   letter-spacing: -0.02em;
 }
 
-.portfolio-hero__eyebrow {
+.portfolio-hero-eyebrow {
   order: 2;
   max-width: 660px;
   margin-top: 36px;
@@ -41,6 +47,10 @@
   font-size: 17px;
   line-height: 1.6;
 }
+
+/*
+   Фильтры жанров
+*/
 
 .portfolio-filters {
   order: 3;
@@ -51,25 +61,29 @@
 }
 
 .portfolio-filter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-width: 72px;
   height: 34px;
   padding: 0 21px;
   border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 4px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #babac4;
   background: #1b1d28;
+  color: #babac4;
   font-size: 14px;
   line-height: 1;
 }
 
-.portfolio-filter--active {
+.portfolio-filter-active {
   border-color: #69c242;
-  color: #061006;
   background: #69c242;
+  color: #061006;
 }
+
+/*
+   Сетка и карточки портфолио
+*/
 
 .portfolio-list {
   margin-top: 41px;
@@ -87,46 +101,48 @@
   min-height: 530px;
   border-radius: 10px;
   background: #03040a;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.34);
 }
 
-.case-card__visual {
+.case-card-visual {
   height: 200px;
   background: #2a2b35;
 }
 
-.case-card__content {
-  min-height: 330px;
-  padding: 26px 24px 28px;
+.case-card-content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background: #03040a;
+  min-height: 330px;
+  padding: 26px 24px 28px;
+  background: #0b0d18;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.case-card__genre {
+.case-card-genre {
   display: inline-flex;
   align-items: center;
   min-height: 26px;
   padding: 0 12px;
   border-radius: 4px;
-  color: #ff7b35;
   background: rgba(255, 96, 35, 0.22);
+  color: #ff7b35;
   font-size: 12px;
   line-height: 1;
   font-weight: 700;
 }
 
-.case-card__project {
+.case-card-project {
   margin-top: 21px;
   color: #ffffff;
-  font-family: var(--font-heading);
+  font-family: var(--font-text);
   font-size: 20px;
   line-height: 1;
   letter-spacing: 0.015em;
   text-transform: uppercase;
 }
 
-.case-card__title {
+.case-card-title {
   margin-top: 26px;
   color: #bdbec8;
   font-size: 17px;
@@ -134,14 +150,14 @@
   font-weight: 400;
 }
 
-.case-card__text {
+.case-card-text {
   margin-top: 28px;
   color: #b9bac3;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.55;
 }
 
-.case-card__link {
+.case-card-link {
   margin-top: auto;
   color: #69c242;
   font-size: 16px;
@@ -149,34 +165,6 @@
   font-weight: 700;
 }
 
-.case-card__link:hover {
+.case-card-link:hover {
   color: #ffffff;
-}
-
-@media (max-width: 1240px) {
-  .portfolio-grid {
-    grid-template-columns: repeat(2, 284px);
-  }
-}
-
-@media (max-width: 680px) {
-  .portfolio-page {
-    padding: 70px 0 84px;
-  }
-
-  .portfolio-hero__title {
-    font-size: 42px;
-  }
-
-  .portfolio-hero__eyebrow {
-    font-size: 16px;
-  }
-
-  .portfolio-filters {
-    flex-wrap: wrap;
-  }
-
-  .portfolio-grid {
-    grid-template-columns: 284px;
-  }
 }
