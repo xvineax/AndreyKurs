@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/config/auth.php'; ?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -8,22 +9,47 @@
   <link rel="stylesheet" href="assets/styles/style.css" />
 </head>
 <body>
+  <?php if (isset($_GET['error'])): ?>
+    <div class="site-message site-message-error">
+      <?php
+        $messages = [
+          'empty_login' => 'Заполните email и пароль.',
+          'wrong_login' => 'Неверный email или пароль.',
+          'empty_register' => 'Заполните все поля регистрации.',
+          'wrong_email' => 'Введите корректный email.',
+          'passwords_not_equal' => 'Пароли не совпадают.',
+          'email_exists' => 'Пользователь с таким email уже существует.',
+          'empty_profile' => 'Заполните имя, фамилию и email.',
+        ];
+        echo e($messages[$_GET['error']] ?? 'Произошла ошибка.');
+      ?>
+    </div>
+  <?php endif; ?>
+
+  <?php if (isset($_GET['success'])): ?>
+    <div class="site-message site-message-success">Данные успешно сохранены.</div>
+  <?php endif; ?>
+
   <header class="site-header">
     <div class="container header-inner">
-      <a class="logo" href="index.html" aria-label="Soundframe Design">
+      <a class="logo" href="index.php" aria-label="Soundframe Design">
         <span class="logo-soundframe">SOUNDFRAME</span>
         <span class="logo-design">DESIGN</span>
       </a>
 
       <nav class="nav" aria-label="Основная навигация">
-        <a href="portfolio.html">Портфолио</a>
-        <a href="process.html">Процесс</a>
-        <a href="for-whom.html">Для кого</a>
+        <a href="portfolio.php">Портфолио</a>
+        <a href="process.php">Процесс</a>
+        <a href="for-whom.php">Для кого</a>
         <a href="#">Комьюнити</a>
         <a class="open-contacts" href="#">Контакты</a>
       </nav>
 
-      <a class="header-login open-auth" href="#">ВОЙТИ</a>
+      <?php if (is_auth()): ?>
+        <a class="header-login" href="profile.php">ПРОФИЛЬ</a>
+      <?php else: ?>
+        <a class="header-login open-auth" href="#">ВОЙТИ</a>
+      <?php endif; ?>
     </div>
   </header>
 
@@ -75,7 +101,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-about">
-        <a class="footer-logo" href="index.html" aria-label="Soundframe Design">
+        <a class="footer-logo" href="index.php" aria-label="Soundframe Design">
           <span class="footer-logo-soundframe">Soundframe</span>
           <span class="footer-logo-design">Design</span>
         </a>
@@ -88,9 +114,9 @@
       <div class="footer-column">
         <h2 class="footer-title">Навигация</h2>
         <nav class="footer-nav" aria-label="Навигация в подвале сайта">
-          <a href="portfolio.html">Портфолио</a>
-          <a href="process.html">Процесс работы</a>
-          <a href="for-whom.html">Для кого</a>
+          <a href="portfolio.php">Портфолио</a>
+          <a href="process.php">Процесс работы</a>
+          <a href="for-whom.php">Для кого</a>
           <a href="#">Комьюнити</a>
           <a href="#">Блог</a>
         </nav>
@@ -130,7 +156,7 @@
       <div class="auth-modal-media">
         <div class="auth-modal-icon">♫</div>
         <button class="auth-modal-close close-auth" type="button" aria-label="Закрыть">×</button>
-        <a class="auth-modal-logo" href="index.html" aria-label="Soundframe Design">
+        <a class="auth-modal-logo" href="index.php" aria-label="Soundframe Design">
           <span class="auth-modal-logo-light">SOUNDFRAME</span>
           <span class="auth-modal-logo-green">DESIGN</span>
         </a>
@@ -146,7 +172,7 @@
           <h2 class="auth-panel-title">Добро пожаловать</h2>
           <p class="auth-panel-subtitle">Войдите в свой аккаунт Soundframe Design</p>
 
-          <form class="auth-form">
+          <form class="auth-form" action="actions/login.php" method="post">
             <label class="auth-form-field">
               <span>EMAIL</span>
               <input type="email" name="email" placeholder="sound@design.com" required />
@@ -167,7 +193,7 @@
           <h2 class="auth-panel-title">Регистрация</h2>
           <p class="auth-panel-subtitle">Создайте аккаунт Soundframe Design</p>
 
-          <form class="auth-form">
+          <form class="auth-form" action="actions/register.php" method="post">
             <label class="auth-form-field">
               <span>EMAIL</span>
               <input type="email" name="email" placeholder="sound@design.com" required />

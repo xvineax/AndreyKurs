@@ -786,3 +786,29 @@ a,
 .project-modal-actions .btn-primary {
   font-family: var(--font-heading)
 }
+
+
+.site-message {
+  position: fixed;
+  top: 95px;
+  left: 50%;
+  z-index: 1000;
+  transform: translateX(-50%);
+  max-width: 520px;
+  width: calc(100% - 32px);
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  background: rgba(10, 14, 24, 0.96);
+  color: #ffffff;
+  text-align: center;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+}
+
+.site-message-error {
+  border-color: rgba(255, 95, 95, 0.6);
+}
+
+.site-message-success {
+  border-color: rgba(105, 194, 66, 0.65);
+}

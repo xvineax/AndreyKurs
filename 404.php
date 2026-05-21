@@ -1,108 +1,79 @@
+<?php require_once __DIR__ . '/config/auth.php'; ?>
 <!doctype html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Портфолио — Soundframe Design</title>
+  <title>404 — Soundframe Design</title>
   <link rel="stylesheet" href="assets/styles/main.css" />
-  <link rel="stylesheet" href="assets/styles/portfolio.css" />
+  <link rel="stylesheet" href="assets/styles/404.css" />
 </head>
 <body>
+  <?php if (isset($_GET['error'])): ?>
+    <div class="site-message site-message-error">
+      <?php
+        $messages = [
+          'empty_login' => 'Заполните email и пароль.',
+          'wrong_login' => 'Неверный email или пароль.',
+          'empty_register' => 'Заполните все поля регистрации.',
+          'wrong_email' => 'Введите корректный email.',
+          'passwords_not_equal' => 'Пароли не совпадают.',
+          'email_exists' => 'Пользователь с таким email уже существует.',
+          'empty_profile' => 'Заполните имя, фамилию и email.',
+        ];
+        echo e($messages[$_GET['error']] ?? 'Произошла ошибка.');
+      ?>
+    </div>
+  <?php endif; ?>
+
+  <?php if (isset($_GET['success'])): ?>
+    <div class="site-message site-message-success">Данные успешно сохранены.</div>
+  <?php endif; ?>
+
   <header class="site-header">
     <div class="container header-inner">
-      <a class="logo" href="index.html" aria-label="Soundframe Design">
+      <a class="logo" href="index.php" aria-label="Soundframe Design">
         <span class="logo-soundframe">SOUNDFRAME</span>
         <span class="logo-design">DESIGN</span>
       </a>
 
       <nav class="nav" aria-label="Основная навигация">
-        <a class="is-active" href="portfolio.html">Портфолио</a>
-        <a href="process.html">Процесс</a>
-        <a href="for-whom.html">Для кого</a>
+        <a href="portfolio.php">Портфолио</a>
+        <a href="process.php">Процесс</a>
+        <a href="for-whom.php">Для кого</a>
         <a href="#">Комьюнити</a>
         <a class="open-contacts" href="#">Контакты</a>
       </nav>
 
-      <a class="header-login open-auth" href="#">ВОЙТИ</a>
+      <?php if (is_auth()): ?>
+        <a class="header-login" href="profile.php">ПРОФИЛЬ</a>
+      <?php else: ?>
+        <a class="header-login open-auth" href="#">ВОЙТИ</a>
+      <?php endif; ?>
     </div>
   </header>
 
-  <main class="portfolio-page">
-    <section class="portfolio-hero">
-      <div class="container portfolio-hero-inner">
-        <p class="portfolio-hero-eyebrow">
-          Кураторская подборка лучших работ для нишевой электронной музыки,<br>
-          инди-рока и экспериментальных направлений
+  <main class="error-page">
+    <section class="container error-page-inner">
+      <div class="error-page-content">
+        <p class="error-page-label">Страница не найдена</p>
+
+        <h1 class="error-page-code">404</h1>
+
+        <h2 class="error-page-title">
+          Потерянный кадр<br>
+          в визуальной вселенной
+        </h2>
+
+        <p class="error-page-text">
+          Такой страницы нет или она была перемещена. Вернитесь на главную,
+          чтобы продолжить знакомство с Soundframe Design.
         </p>
-        <h1 class="portfolio-hero-title">Портфолио</h1>
 
-        <div class="portfolio-filters" aria-label="Фильтр портфолио">
-          <a class="portfolio-filter portfolio-filter-active" href="#">Все</a>
-          <a class="portfolio-filter" href="#">D&amp;B</a>
-          <a class="portfolio-filter" href="#">Techno</a>
-          <a class="portfolio-filter" href="#">Acid</a>
-          <a class="portfolio-filter" href="#">Пост-хардкор</a>
+        <div class="error-page-actions">
+          <a class="btn btn-primary" href="index.php">НА ГЛАВНУЮ</a>
+          <a class="btn btn-ghost" href="portfolio.php">ПОРТФОЛИО</a>
         </div>
-      </div>
-    </section>
-
-    <section class="portfolio-list">
-      <div class="container portfolio-grid">
-        <article class="case-card case-card-green">
-          <div class="case-card-visual" aria-hidden="true"></div>
-          <div class="case-card-content">
-            <p class="case-card-genre">D&amp;B</p>
-            <p class="case-card-project">Liquid Forms</p>
-            <h2 class="case-card-title">Aether Drift</h2>
-            <p class="case-card-text">
-              Иммерсивная 3D-сцена для лейбла Liquid Forms Records с элементами
-              интерактива и анимированной графикой.
-            </p>
-            <a class="case-card-link" href="#">Смотреть кейс →</a>
-          </div>
-        </article>
-
-        <article class="case-card case-card-violet">
-          <div class="case-card-visual" aria-hidden="true"></div>
-          <div class="case-card-content">
-            <p class="case-card-genre">D&amp;B</p>
-            <p class="case-card-project">Liquid Forms</p>
-            <h2 class="case-card-title">Aether Drift</h2>
-            <p class="case-card-text">
-              Иммерсивная 3D-сцена для лейбла Liquid Forms Records с элементами
-              интерактива и анимированной графикой.
-            </p>
-            <a class="case-card-link" href="#">Смотреть кейс →</a>
-          </div>
-        </article>
-
-        <article class="case-card case-card-acid">
-          <div class="case-card-visual" aria-hidden="true"></div>
-          <div class="case-card-content">
-            <p class="case-card-genre">Acid</p>
-            <p class="case-card-project">Retro Future</p>
-            <h2 class="case-card-title">Circuit Breaker</h2>
-            <p class="case-card-text">
-              Винтажная эстетика 90-х с цифровым глитч-артом и психоделическими
-              элементами для кислотного техно-проекта.
-            </p>
-            <a class="case-card-link" href="#">Смотреть кейс →</a>
-          </div>
-        </article>
-
-        <article class="case-card case-card-hardcore">
-          <div class="case-card-visual" aria-hidden="true"></div>
-          <div class="case-card-content">
-            <p class="case-card-genre">Пост-хардкор</p>
-            <p class="case-card-project">Broken Harmony</p>
-            <h2 class="case-card-title">Fractured Echo</h2>
-            <p class="case-card-text">
-              Агрессивный коллаж с элементами ручной графики, типографики и
-              текстурами для пост-хардкор группы.
-            </p>
-            <a class="case-card-link" href="#">Смотреть кейс →</a>
-          </div>
-        </article>
       </div>
     </section>
   </main>
@@ -110,7 +81,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-about">
-        <a class="footer-logo" href="index.html" aria-label="Soundframe Design">
+        <a class="footer-logo" href="index.php" aria-label="Soundframe Design">
           <span class="footer-logo-soundframe">Soundframe</span><span class="footer-logo-design">Design</span>
         </a>
         <p class="footer-text">
@@ -122,9 +93,9 @@
       <div class="footer-column">
         <h2 class="footer-title">Навигация</h2>
         <nav class="footer-nav" aria-label="Навигация в подвале сайта">
-          <a href="portfolio.html">Портфолио</a>
-          <a href="process.html">Процесс работы</a>
-          <a href="for-whom.html">Для кого</a>
+          <a href="portfolio.php">Портфолио</a>
+          <a href="process.php">Процесс работы</a>
+          <a href="for-whom.php">Для кого</a>
           <a href="#">Комьюнити</a>
           <a href="#">Блог</a>
         </nav>
@@ -163,7 +134,7 @@
       <div class="auth-modal-media">
         <div class="auth-modal-icon">♫</div>
         <button class="auth-modal-close close-auth" type="button" aria-label="Закрыть">×</button>
-        <a class="auth-modal-logo" href="index.html" aria-label="Soundframe Design">
+        <a class="auth-modal-logo" href="index.php" aria-label="Soundframe Design">
           <span class="auth-modal-logo-light">SOUNDFRAME</span>
           <span class="auth-modal-logo-green">DESIGN</span>
         </a>
@@ -179,7 +150,7 @@
           <h2 class="auth-panel-title">Добро пожаловать</h2>
           <p class="auth-panel-subtitle">Войдите в свой аккаунт Soundframe Design</p>
 
-          <form class="auth-form">
+          <form class="auth-form" action="actions/login.php" method="post">
             <label class="auth-form-field">
               <span>EMAIL</span>
               <input type="email" name="email" placeholder="sound@design.com" required />
@@ -200,7 +171,7 @@
           <h2 class="auth-panel-title">Регистрация</h2>
           <p class="auth-panel-subtitle">Создайте аккаунт Soundframe Design</p>
 
-          <form class="auth-form">
+          <form class="auth-form" action="actions/register.php" method="post">
             <label class="auth-form-field">
               <span>EMAIL</span>
               <input type="email" name="email" placeholder="sound@design.com" required />

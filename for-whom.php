@@ -1,96 +1,78 @@
+<?php require_once __DIR__ . '/config/auth.php'; ?>
 <!doctype html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Профиль — Soundframe Design</title>
+  <title>Для кого — Soundframe Design</title>
   <link rel="stylesheet" href="assets/styles/main.css" />
-  <link rel="stylesheet" href="assets/styles/profile.css" />
+  <link rel="stylesheet" href="assets/styles/for-whom.css" />
 </head>
 <body>
+  <?php if (isset($_GET['error'])): ?>
+    <div class="site-message site-message-error">
+      <?php
+        $messages = [
+          'empty_login' => 'Заполните email и пароль.',
+          'wrong_login' => 'Неверный email или пароль.',
+          'empty_register' => 'Заполните все поля регистрации.',
+          'wrong_email' => 'Введите корректный email.',
+          'passwords_not_equal' => 'Пароли не совпадают.',
+          'email_exists' => 'Пользователь с таким email уже существует.',
+          'empty_profile' => 'Заполните имя, фамилию и email.',
+        ];
+        echo e($messages[$_GET['error']] ?? 'Произошла ошибка.');
+      ?>
+    </div>
+  <?php endif; ?>
+
+  <?php if (isset($_GET['success'])): ?>
+    <div class="site-message site-message-success">Данные успешно сохранены.</div>
+  <?php endif; ?>
+
   <header class="site-header">
     <div class="container header-inner">
-      <a class="logo" href="index.html" aria-label="Soundframe Design">
+      <a class="logo" href="index.php" aria-label="Soundframe Design">
         <span class="logo-soundframe">SOUNDFRAME</span>
         <span class="logo-design">DESIGN</span>
       </a>
 
       <nav class="nav" aria-label="Основная навигация">
-        <a href="portfolio.html">Портфолио</a>
-        <a href="process.html">Процесс</a>
-        <a href="for-whom.html">Для кого</a>
+        <a href="portfolio.php">Портфолио</a>
+        <a href="process.php">Процесс</a>
+        <a class="is-active" href="for-whom.php">Для кого</a>
         <a href="#">Комьюнити</a>
         <a class="open-contacts" href="#">Контакты</a>
       </nav>
 
-      <a class="header-login open-auth" href="#">ВОЙТИ</a>
+      <?php if (is_auth()): ?>
+        <a class="header-login" href="profile.php">ПРОФИЛЬ</a>
+      <?php else: ?>
+        <a class="header-login open-auth" href="#">ВОЙТИ</a>
+      <?php endif; ?>
     </div>
   </header>
 
-  <main class="profile-page">
-    <section class="container profile-page-inner">
-      <header class="profile-hero">
-        <div class="profile-hero-avatar">
-          <span>SD</span>
-        </div>
-
-        <div class="profile-hero-info">
-          <p class="profile-hero-label">Личный кабинет</p>
-          <h1 class="profile-hero-title">Профиль пользователя</h1>
-          <p class="profile-hero-text">
-            Управляйте данными аккаунта, отслеживайте проекты и сохраняйте
-            избранные визуальные работы Soundframe Design.
-          </p>
-        </div>
-
-        <a class="btn btn-primary profile-hero-button open-profile-edit" href="#">РЕДАКТИРОВАТЬ</a>
-      </header>
-
-      <section class="profile-grid">
-        <article class="profile-card profile-card-info">
-          <h2 class="profile-card-title">Основная информация</h2>
-
-          <dl class="profile-info">
-            <div class="profile-info-row">
-              <dt>Имя</dt>
-              <dd>Иван</dd>
-            </div>
-
-            <div class="profile-info-row">
-              <dt>Фамилия</dt>
-              <dd>Иванов</dd>
-            </div>
-
-            <div class="profile-info-row">
-              <dt>Email</dt>
-              <dd>sound@design.com</dd>
-            </div>
-
-            <div class="profile-info-row">
-              <dt>Статус</dt>
-              <dd><span class="profile-status">Активен</span></dd>
-            </div>
-          </dl>
-        </article>
-
-        <article class="profile-card">
-          <h2 class="profile-card-title">Быстрые действия</h2>
-
-          <div class="profile-actions">
-            <a class="open-profile-edit" href="#">Редактировать профиль</a>
-            <a href="#">Изменить пароль</a>
-            <a class="open-contacts" href="#">Связаться с нами</a>
-            <a class="profile-actions-logout" href="index.html">Выйти из аккаунта</a>
-          </div>
-        </article>
-      </section>
+  <main class="cta-page">
+    <section class="cta-section">
+      <div class="container cta-inner">
+        <h1 class="cta-title">
+          Готовы создать визуальную вселенную для<br>
+          вашего звука?
+        </h1>
+        <p class="cta-text">
+          Присоединяйтесь к кураторской платформе, где каждая работа — это<br>
+          эксклюзивный проект, а каждый релиз — событие в нишевой сцене.
+        </p>
+        <a class="btn btn-primary cta-button open-project" href="#">Начать проект</a>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-about">
-        <a class="footer-logo" href="index.html" aria-label="Soundframe Design">
+        <a class="footer-logo" href="index.php" aria-label="Soundframe Design">
           <span class="footer-logo-soundframe">Soundframe</span><span class="footer-logo-design">Design</span>
         </a>
         <p class="footer-text">
@@ -102,9 +84,9 @@
       <div class="footer-column">
         <h2 class="footer-title">Навигация</h2>
         <nav class="footer-nav" aria-label="Навигация в подвале сайта">
-          <a href="portfolio.html">Портфолио</a>
-          <a href="process.html">Процесс работы</a>
-          <a href="for-whom.html">Для кого</a>
+          <a href="portfolio.php">Портфолио</a>
+          <a href="process.php">Процесс работы</a>
+          <a href="for-whom.php">Для кого</a>
           <a href="#">Комьюнити</a>
           <a href="#">Блог</a>
         </nav>
@@ -143,7 +125,7 @@
       <div class="auth-modal-media">
         <div class="auth-modal-icon">♫</div>
         <button class="auth-modal-close close-auth" type="button" aria-label="Закрыть">×</button>
-        <a class="auth-modal-logo" href="index.html" aria-label="Soundframe Design">
+        <a class="auth-modal-logo" href="index.php" aria-label="Soundframe Design">
           <span class="auth-modal-logo-light">SOUNDFRAME</span>
           <span class="auth-modal-logo-green">DESIGN</span>
         </a>
@@ -159,7 +141,7 @@
           <h2 class="auth-panel-title">Добро пожаловать</h2>
           <p class="auth-panel-subtitle">Войдите в свой аккаунт Soundframe Design</p>
 
-          <form class="auth-form">
+          <form class="auth-form" action="actions/login.php" method="post">
             <label class="auth-form-field">
               <span>EMAIL</span>
               <input type="email" name="email" placeholder="sound@design.com" required />
@@ -180,7 +162,7 @@
           <h2 class="auth-panel-title">Регистрация</h2>
           <p class="auth-panel-subtitle">Создайте аккаунт Soundframe Design</p>
 
-          <form class="auth-form">
+          <form class="auth-form" action="actions/register.php" method="post">
             <label class="auth-form-field">
               <span>EMAIL</span>
               <input type="email" name="email" placeholder="sound@design.com" required />
@@ -258,50 +240,27 @@
     </div>
   </dialog>
 
-  <dialog class="profile-edit-dialog" id="profile-edit-modal">
-    <div class="profile-edit-modal">
-      <div class="profile-edit-modal-header">
+  <dialog class="project-dialog" id="project-modal">
+    <div class="project-modal">
+      <div class="project-modal-header">
         <div>
-          <p class="profile-edit-modal-label">Личный кабинет</p>
-          <h2 class="profile-edit-modal-title">Редактирование</h2>
+          <p class="project-modal-label">Заявка на проект</p>
+          <h2 class="project-modal-title">Начать проект</h2>
         </div>
 
-        <button class="profile-edit-modal-close close-profile-edit" type="button" aria-label="Закрыть">×</button>
+        <button class="project-modal-close close-project" type="button" aria-label="Закрыть">×</button>
       </div>
 
-      <form class="profile-edit-form">
-        <div class="profile-edit-form-row">
-          <label class="profile-edit-form-field">
-            <span>ИМЯ</span>
-            <input type="text" name="first_name" value="Иван" />
-          </label>
+      <p class="project-modal-text">
+        Для обсуждения идеи, сроков и деталей оформления перейдите в Telegram.
+        Там мы быстрее ответим и поможем оформить заявку на визуальную вселенную
+        для вашего релиза.
+      </p>
 
-          <label class="profile-edit-form-field">
-            <span>ФАМИЛИЯ</span>
-            <input type="text" name="last_name" value="Иванов" />
-          </label>
-        </div>
-
-        <label class="profile-edit-form-field">
-          <span>EMAIL</span>
-          <input type="email" name="email" value="sound@design.com" />
-        </label>
-
-        <label class="profile-edit-form-field">
-          <span>НОВЫЙ ПАРОЛЬ</span>
-          <input type="password" name="password" placeholder="Оставьте пустым, если не меняете" />
-        </label>
-
-        <label class="profile-edit-form-field">
-          <span>ПОВТОР НОВОГО ПАРОЛЯ</span>
-          <input type="password" name="password_repeat" placeholder="Повторите новый пароль" />
-        </label>
-
-        <div class="profile-edit-form-buttons">
-          <button class="btn btn-primary" type="submit">СОХРАНИТЬ</button>
-          <button class="btn btn-ghost close-profile-edit" type="button">ОТМЕНА</button>
-        </div>
-      </form>
+      <div class="project-modal-actions">
+        <a class="btn btn-primary" href="https://t.me/soundframedesign" target="_blank" rel="noopener">ПЕРЕЙТИ В ТЕЛЕГРАМ</a>
+        <button class="btn btn-ghost close-project" type="button">ОСТАТЬСЯ НА САЙТЕ</button>
+      </div>
     </div>
   </dialog>
 
