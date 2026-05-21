@@ -408,3 +408,143 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/*
+   Проекты пользователя в профиле
+*/
+
+.profile-projects {
+  margin-top: 28px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 26px;
+  background: #0b0d18;
+}
+
+.profile-projects-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.profile-projects-label {
+  margin-bottom: 8px;
+  color: var(--green);
+  font-family: var(--font-text);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.profile-projects-admin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: 12px;
+  background: var(--green);
+  color: #061006;
+  font-family: var(--font-text);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.profile-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.profile-project-card {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  background: #050712;
+}
+
+.profile-project-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 170px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #777b8d;
+  font-family: var(--font-text);
+  font-size: 14px;
+}
+
+.profile-project-image-empty {
+  background: #10131f;
+}
+
+.profile-project-content {
+  padding: 20px;
+}
+
+.profile-project-genre {
+  display: inline-flex;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: rgba(105, 194, 66, 0.12);
+  color: var(--green);
+  font-family: var(--font-text);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.profile-project-title {
+  margin-top: 14px;
+  color: #ffffff;
+  font-family: var(--font-text);
+  font-size: 19px;
+  line-height: 1.2;
+}
+
+.profile-project-artist {
+  margin-top: 8px;
+  color: #c7c8d2;
+  font-family: var(--font-text);
+  font-size: 14px;
+}
+
+.profile-project-text {
+  margin-top: 14px;
+  color: #b8bac6;
+  font-family: var(--font-text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.profile-projects-empty {
+  padding: 24px;
+  border-radius: 16px;
+  background: #050712;
+  color: #b8bac6;
+  font-family: var(--font-text);
+  font-size: 15px;
+}
+
+@media (max-width: 900px) {
+  .profile-projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .profile-projects-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .profile-projects-grid {
+    grid-template-columns: 1fr;
+  }
+}

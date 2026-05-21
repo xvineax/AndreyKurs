@@ -168,3 +168,24 @@
 .case-card-link:hover {
   color: #ffffff;
 }
+/*
+   Данные из базы данных
+*/
+
+.case-card-visual[style] {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.portfolio-empty {
+  grid-column: 1 / -1;
+  padding: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  background: #0b0d18;
+  color: #b9bac3;
+  font-family: var(--font-text);
+  font-size: 17px;
+  text-align: center;
+}

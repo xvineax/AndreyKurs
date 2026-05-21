@@ -84,6 +84,21 @@ CREATE TABLE `submissions_musician` (
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `submission_files`
+--
+
+CREATE TABLE `submission_files` (
+  `id` int(11) NOT NULL,
+  `submission_id` int(11) NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `file_path` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
 
 --
@@ -135,6 +150,13 @@ ALTER TABLE `submissions_musician`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Индексы таблицы `submission_files`
+--
+ALTER TABLE `submission_files`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `submission_id` (`submission_id`);
+
+--
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
@@ -170,6 +192,12 @@ ALTER TABLE `submissions_musician`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT для таблицы `submission_files`
+--
+ALTER TABLE `submission_files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
@@ -192,6 +220,12 @@ ALTER TABLE `projects`
 ALTER TABLE `submissions_musician`
   ADD CONSTRAINT `submissions_musician_ibfk_1` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`id`),
   ADD CONSTRAINT `submissions_musician_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `submission_files`
+--
+ALTER TABLE `submission_files`
+  ADD CONSTRAINT `submission_files_ibfk_1` FOREIGN KEY (`submission_id`) REFERENCES `submissions_musician` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

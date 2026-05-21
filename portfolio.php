@@ -1,4 +1,9 @@
-<?php require_once __DIR__ . '/config/auth.php'; ?>
+<?php
+require_once __DIR__ . '/config/auth.php';
+require_once __DIR__ . '/config/db.php';
+
+$projects = mysqli_query($connect, "SELECT * FROM projects ORDER BY id DESC");
+?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -20,6 +25,7 @@
           'passwords_not_equal' => 'Пароли не совпадают.',
           'email_exists' => 'Пользователь с таким email уже существует.',
           'empty_profile' => 'Заполните имя, фамилию и email.',
+          'not_admin' => 'У вас нет доступа к админ-панели.',
         ];
         echo e($messages[$_GET['error']] ?? 'Произошла ошибка.');
       ?>
@@ -41,6 +47,9 @@
         <a class="is-active" href="portfolio.php">Портфолио</a>
         <a href="process.php">Процесс</a>
         <a href="for-whom.php">Для кого</a>
+        <?php if (is_admin()): ?>
+          <a href="admin.php">Админ-панель</a>
+        <?php endif; ?>
         <a href="#">Комьюнити</a>
         <a class="open-contacts" href="#">Контакты</a>
       </nav>
@@ -74,61 +83,37 @@
 
     <section class="portfolio-list">
       <div class="container portfolio-grid">
-        <article class="case-card case-card-green">
-          <div class="case-card-visual" aria-hidden="true"></div>
-          <div class="case-card-content">
-            <p class="case-card-genre">D&amp;B</p>
-            <p class="case-card-project">Liquid Forms</p>
-            <h2 class="case-card-title">Aether Drift</h2>
-            <p class="case-card-text">
-              Иммерсивная 3D-сцена для лейбла Liquid Forms Records с элементами
-              интерактива и анимированной графикой.
-            </p>
-            <a class="case-card-link" href="#">Смотреть кейс →</a>
-          </div>
-        </article>
+        <?php if ($projects && mysqli_num_rows($projects) > 0): ?>
+          <?php
+            $card_classes = ['case-card-green', 'case-card-violet', 'case-card-acid', 'case-card-hardcore'];
+            $card_number = 0;
+          ?>
 
-        <article class="case-card case-card-violet">
-          <div class="case-card-visual" aria-hidden="true"></div>
-          <div class="case-card-content">
-            <p class="case-card-genre">D&amp;B</p>
-            <p class="case-card-project">Liquid Forms</p>
-            <h2 class="case-card-title">Aether Drift</h2>
-            <p class="case-card-text">
-              Иммерсивная 3D-сцена для лейбла Liquid Forms Records с элементами
-              интерактива и анимированной графикой.
-            </p>
-            <a class="case-card-link" href="#">Смотреть кейс →</a>
-          </div>
-        </article>
+          <?php while ($project = mysqli_fetch_assoc($projects)): ?>
+            <?php
+              $class = $card_classes[$card_number % count($card_classes)];
+              $card_number++;
+            ?>
 
-        <article class="case-card case-card-acid">
-          <div class="case-card-visual" aria-hidden="true"></div>
-          <div class="case-card-content">
-            <p class="case-card-genre">Acid</p>
-            <p class="case-card-project">Retro Future</p>
-            <h2 class="case-card-title">Circuit Breaker</h2>
-            <p class="case-card-text">
-              Винтажная эстетика 90-х с цифровым глитч-артом и психоделическими
-              элементами для кислотного техно-проекта.
-            </p>
-            <a class="case-card-link" href="#">Смотреть кейс →</a>
-          </div>
-        </article>
+            <article class="case-card <?= e($class) ?>">
+              <?php if (!empty($project['image_url'])): ?>
+                <div class="case-card-visual" style="background-image: url('<?= e($project['image_url']) ?>');" aria-hidden="true"></div>
+              <?php else: ?>
+                <div class="case-card-visual" aria-hidden="true"></div>
+              <?php endif; ?>
 
-        <article class="case-card case-card-hardcore">
-          <div class="case-card-visual" aria-hidden="true"></div>
-          <div class="case-card-content">
-            <p class="case-card-genre">Пост-хардкор</p>
-            <p class="case-card-project">Broken Harmony</p>
-            <h2 class="case-card-title">Fractured Echo</h2>
-            <p class="case-card-text">
-              Агрессивный коллаж с элементами ручной графики, типографики и
-              текстурами для пост-хардкор группы.
-            </p>
-            <a class="case-card-link" href="#">Смотреть кейс →</a>
-          </div>
-        </article>
+              <div class="case-card-content">
+                <p class="case-card-genre"><?= e($project['genre'] ?: 'Без жанра') ?></p>
+                <p class="case-card-project"><?= e($project['artist'] ?: 'Soundframe Design') ?></p>
+                <h2 class="case-card-title"><?= e($project['title']) ?></h2>
+                <p class="case-card-text"><?= e($project['description'] ?: 'Описание проекта пока не добавлено.') ?></p>
+                <a class="case-card-link" href="<?= e($project['case_link'] ?: '#') ?>">Смотреть кейс →</a>
+              </div>
+            </article>
+          <?php endwhile; ?>
+        <?php else: ?>
+          <p class="portfolio-empty">В базе данных пока нет проектов.</p>
+        <?php endif; ?>
       </div>
     </section>
   </main>
@@ -151,6 +136,9 @@
           <a href="portfolio.php">Портфолио</a>
           <a href="process.php">Процесс работы</a>
           <a href="for-whom.php">Для кого</a>
+        <?php if (is_admin()): ?>
+          <a href="admin.php">Админ-панель</a>
+        <?php endif; ?>
           <a href="#">Комьюнити</a>
           <a href="#">Блог</a>
         </nav>

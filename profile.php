@@ -1,10 +1,14 @@
 <?php
 require_once __DIR__ . '/config/auth.php';
+require_once __DIR__ . '/config/db.php';
 if (!is_auth()) {
     redirect('index.php');
 }
 $user = current_user();
 $nameParts = split_full_name($user['name'] ?? '');
+
+$user_id = (int)$user['id'];
+$user_projects = mysqli_query($connect, "SELECT * FROM projects WHERE user_id = $user_id ORDER BY id DESC");
 ?>
 <!doctype html>
 <html lang="ru">
@@ -27,6 +31,7 @@ $nameParts = split_full_name($user['name'] ?? '');
           'passwords_not_equal' => 'Пароли не совпадают.',
           'email_exists' => 'Пользователь с таким email уже существует.',
           'empty_profile' => 'Заполните имя, фамилию и email.',
+          'not_admin' => 'У вас нет доступа к админ-панели.',
         ];
         echo e($messages[$_GET['error']] ?? 'Произошла ошибка.');
       ?>
@@ -48,6 +53,9 @@ $nameParts = split_full_name($user['name'] ?? '');
         <a href="portfolio.php">Портфолио</a>
         <a href="process.php">Процесс</a>
         <a href="for-whom.php">Для кого</a>
+        <?php if (is_admin()): ?>
+          <a href="admin.php">Админ-панель</a>
+        <?php endif; ?>
         <a href="#">Комьюнити</a>
         <a class="open-contacts" href="#">Контакты</a>
       </nav>
@@ -88,7 +96,7 @@ $nameParts = split_full_name($user['name'] ?? '');
               <dt>Имя</dt>
               <dd><?= e($user['name']) ?></dd>
             </div>
-<div class="profile-info-row">
+            <div class="profile-info-row">
               <dt>Email</dt>
               <dd><?= e($user['email']) ?></dd>
             </div>
@@ -105,11 +113,59 @@ $nameParts = split_full_name($user['name'] ?? '');
 
           <div class="profile-actions">
             <a class="open-profile-edit" href="#">Редактировать профиль</a>
+            <?php if (is_admin()): ?>
+              <a href="admin.php">Перейти в админ-панель</a>
+            <?php endif; ?>
             <a href="#">Изменить пароль</a>
             <a class="open-contacts" href="#">Связаться с нами</a>
             <a class="profile-actions-logout" href="actions/logout.php">Выйти из аккаунта</a>
           </div>
         </article>
+      </section>
+
+      <section class="profile-projects">
+        <div class="profile-projects-header">
+          <div>
+            <p class="profile-projects-label">Мои работы</p>
+            <h2 class="profile-card-title">Проекты пользователя</h2>
+          </div>
+
+          <?php if (is_admin()): ?>
+            <a class="profile-projects-admin" href="admin.php?tab=projects">Добавить проект</a>
+          <?php endif; ?>
+        </div>
+
+        <?php if ($user_projects && mysqli_num_rows($user_projects) > 0): ?>
+          <div class="profile-projects-grid">
+            <?php while ($project = mysqli_fetch_assoc($user_projects)): ?>
+              <article class="profile-project-card">
+                <?php if (!empty($project['image_url'])): ?>
+                  <div class="profile-project-image" style="background-image: url('<?= e($project['image_url']) ?>');"></div>
+                <?php else: ?>
+                  <div class="profile-project-image profile-project-image-empty">Нет картинки</div>
+                <?php endif; ?>
+
+                <div class="profile-project-content">
+                  <?php if (!empty($project['genre'])): ?>
+                    <span class="profile-project-genre"><?= e($project['genre']) ?></span>
+                  <?php endif; ?>
+
+                  <h3 class="profile-project-title"><?= e($project['title']) ?></h3>
+
+                  <?php if (!empty($project['artist'])): ?>
+                    <p class="profile-project-artist"><?= e($project['artist']) ?></p>
+                  <?php endif; ?>
+
+                  <?php if (!empty($project['description'])): ?>
+                    <p class="profile-project-text"><?= e($project['description']) ?></p>
+                  <?php endif; ?>
+                </div>
+              </article>
+            <?php endwhile; ?>
+          </div>
+        <?php else: ?>
+          <p class="profile-projects-empty">К этому пользователю пока не привязаны проекты.</p>
+        <?php endif; ?>
       </section>
     </section>
   </main>
@@ -132,6 +188,9 @@ $nameParts = split_full_name($user['name'] ?? '');
           <a href="portfolio.php">Портфолио</a>
           <a href="process.php">Процесс работы</a>
           <a href="for-whom.php">Для кого</a>
+        <?php if (is_admin()): ?>
+          <a href="admin.php">Админ-панель</a>
+        <?php endif; ?>
           <a href="#">Комьюнити</a>
           <a href="#">Блог</a>
         </nav>

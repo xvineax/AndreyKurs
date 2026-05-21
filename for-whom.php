@@ -20,6 +20,9 @@
           'passwords_not_equal' => 'Пароли не совпадают.',
           'email_exists' => 'Пользователь с таким email уже существует.',
           'empty_profile' => 'Заполните имя, фамилию и email.',
+          'not_admin' => 'У вас нет доступа к админ-панели.',
+          'empty_submission' => 'Заполните описание проекта.',
+          'need_auth' => 'Чтобы отправить заявку, сначала войдите в аккаунт.',
         ];
         echo e($messages[$_GET['error']] ?? 'Произошла ошибка.');
       ?>
@@ -27,7 +30,14 @@
   <?php endif; ?>
 
   <?php if (isset($_GET['success'])): ?>
-    <div class="site-message site-message-success">Данные успешно сохранены.</div>
+    <div class="site-message site-message-success">
+      <?php
+        $success = [
+          'submission_sent' => 'Заявка отправлена. Мы изучим её и свяжемся с вами.',
+        ];
+        echo e($success[$_GET['success']] ?? 'Данные успешно сохранены.');
+      ?>
+    </div>
   <?php endif; ?>
 
   <header class="site-header">
@@ -41,6 +51,9 @@
         <a href="portfolio.php">Портфолио</a>
         <a href="process.php">Процесс</a>
         <a class="is-active" href="for-whom.php">Для кого</a>
+        <?php if (is_admin()): ?>
+          <a href="admin.php">Админ-панель</a>
+        <?php endif; ?>
         <a href="#">Комьюнити</a>
         <a class="open-contacts" href="#">Контакты</a>
       </nav>
@@ -87,6 +100,9 @@
           <a href="portfolio.php">Портфолио</a>
           <a href="process.php">Процесс работы</a>
           <a href="for-whom.php">Для кого</a>
+        <?php if (is_admin()): ?>
+          <a href="admin.php">Админ-панель</a>
+        <?php endif; ?>
           <a href="#">Комьюнити</a>
           <a href="#">Блог</a>
         </nav>
@@ -252,15 +268,49 @@
       </div>
 
       <p class="project-modal-text">
-        Для обсуждения идеи, сроков и деталей оформления перейдите в Telegram.
-        Там мы быстрее ответим и поможем оформить заявку на визуальную вселенную
-        для вашего релиза.
+        Заполните короткую заявку. После отправки она появится в админ-панели,
+        где администратор сможет изучить идею и создать по ней проект.
       </p>
 
-      <div class="project-modal-actions">
-        <a class="btn btn-primary" href="https://t.me/soundframedesign" target="_blank" rel="noopener">ПЕРЕЙТИ В ТЕЛЕГРАМ</a>
-        <button class="btn btn-ghost close-project" type="button">ОСТАТЬСЯ НА САЙТЕ</button>
-      </div>
+      <?php if (is_auth()): ?>
+        <div class="project-user-info">
+          <p>Заявка будет отправлена от аккаунта:</p>
+          <strong><?= e(current_user()['name']) ?></strong>
+          <span><?= e(current_user()['email']) ?></span>
+        </div>
+
+        <form class="project-form" action="actions/send_submission.php" method="post" enctype="multipart/form-data">
+          <label>
+            <span>Жанр / направление</span>
+            <input type="text" name="genre" placeholder="Techno, D&B, Acid">
+          </label>
+
+          <label>
+            <span>Описание проекта *</span>
+            <textarea name="project_description" rows="5" placeholder="Расскажите, что нужно сделать: обложка, визуал для релиза, стиль, сроки, пожелания" required></textarea>
+          </label>
+
+          <label>
+            <span>Файлы и картинки</span>
+            <input type="file" name="files[]" multiple accept="image/*,.pdf,.doc,.docx,.txt,.zip,.rar">
+            <small>Можно выбрать сразу несколько файлов: картинки, текст, архив, PDF или Word.</small>
+          </label>
+
+          <div class="project-modal-actions">
+            <button class="btn btn-primary" type="submit">ОТПРАВИТЬ ЗАЯВКУ</button>
+            <button class="btn btn-ghost close-project" type="button">ЗАКРЫТЬ</button>
+          </div>
+        </form>
+      <?php else: ?>
+        <div class="project-user-info">
+          <p>Чтобы отправить заявку, сначала войдите в аккаунт. Имя и почта будут взяты из профиля автоматически.</p>
+        </div>
+
+        <div class="project-modal-actions">
+          <button class="btn btn-primary open-auth close-project" type="button">ВОЙТИ</button>
+          <button class="btn btn-ghost close-project" type="button">ЗАКРЫТЬ</button>
+        </div>
+      <?php endif; ?>
     </div>
   </dialog>
 

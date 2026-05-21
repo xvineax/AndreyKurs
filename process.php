@@ -20,6 +20,7 @@
           'passwords_not_equal' => 'Пароли не совпадают.',
           'email_exists' => 'Пользователь с таким email уже существует.',
           'empty_profile' => 'Заполните имя, фамилию и email.',
+          'not_admin' => 'У вас нет доступа к админ-панели.',
         ];
         echo e($messages[$_GET['error']] ?? 'Произошла ошибка.');
       ?>
@@ -41,6 +42,9 @@
         <a href="portfolio.php">Портфолио</a>
         <a class="is-active" href="process.php">Процесс</a>
         <a href="for-whom.php">Для кого</a>
+        <?php if (is_admin()): ?>
+          <a href="admin.php">Админ-панель</a>
+        <?php endif; ?>
         <a href="#">Комьюнити</a>
         <a class="open-contacts" href="#">Контакты</a>
       </nav>
@@ -141,6 +145,9 @@
           <a href="portfolio.php">Портфолио</a>
           <a href="process.php">Процесс работы</a>
           <a href="for-whom.php">Для кого</a>
+        <?php if (is_admin()): ?>
+          <a href="admin.php">Админ-панель</a>
+        <?php endif; ?>
           <a href="#">Комьюнити</a>
           <a href="#">Блог</a>
         </nav>

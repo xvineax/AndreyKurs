@@ -17,6 +17,13 @@ function current_user() {
     return null;
 }
 
+
+
+// Проверяем, является ли пользователь администратором
+function is_admin() {
+    return isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin';
+}
+
 // Простая переадресация на другую страницу
 function redirect($page) {
     header('Location: ' . $page);
